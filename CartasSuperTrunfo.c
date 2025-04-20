@@ -80,7 +80,7 @@ void exibirDados(struct cartaEstadoCidade carta, int numero) {
     printf("Pontos turísticos: %d\n", carta.pontos_turisticos);
     printf("Densidade: %.2f hab/km²\n", carta.densidade);
     printf("PIB per Capita: %.2f reais\n", carta.pib_per_capita);
-    printf("Super Poder: %llu\n", carta.super_poder);  // Correção na exibição
+    printf("Super Poder: %llu\n", carta.super_poder);  // Para exibir numeros muitos grandes
 }
 
 // Comparação das cartas
@@ -117,7 +117,7 @@ void compararCartas(struct cartaEstadoCidade carta1, struct cartaEstadoCidade ca
 
     if (carta1.super_poder > carta2.super_poder) {
         printf("A carta 1 (%s - %s) é mais forte com super poder de %llu.\n", 
-               carta1.estado, carta1.nome_cidade, carta1.super_poder);
+               carta1.estado, carta1.nome_cidade, carta1.super_poder); // Para mostrar na tela o nome do estado, cidade e os pontos totais do super poder.
     } else if (carta1.super_poder < carta2.super_poder) {
         printf("A carta 2 (%s - %s) é mais forte com super poder de %llu.\n", 
                carta2.estado, carta2.nome_cidade, carta2.super_poder);
