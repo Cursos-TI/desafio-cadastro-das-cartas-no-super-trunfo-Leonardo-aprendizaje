@@ -47,7 +47,7 @@ void coletarDados(struct cartaEstadoCidade *carta, int numero) {
     getchar();
 
     // PIB
-    printf("Digite o PIB (em bilhões, sem pontos, colocar todos os numeros.): ");
+    printf("* Digite o pib em bilhões, sem pontos, colocar todos os numeros * exemplo:(300000000000 )\n Digite o PIB: ");
     scanf("%llu", &carta->pib);
     getchar();
 
@@ -88,41 +88,114 @@ void compararCartas(struct cartaEstadoCidade carta1, struct cartaEstadoCidade ca
     printf("\n=== Comparação das Cartas ===\n");
 
 
+    int escolhaJogador;
     int resultado;
 
-    // População
-    resultado = (carta1.populacao > carta2.populacao);
-    printf("População: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.populacao < carta2.populacao ? "Carta 2 venceu" : "Empate"));
-
-    // Área km²
-    resultado = (carta1.area_km2 > carta2.area_km2);
-    printf("Área km²: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.area_km2 < carta2.area_km2 ? "Carta 2 venceu" : "Empate"));
-
-    // PIB
-    resultado = (carta1.pib > carta2.pib);
-    printf("PIB: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.pib < carta2.pib ? "Carta 2 venceu" : "Empate"));
-
-    // Pontos Turísticos
-    resultado = (carta1.pontos_turisticos > carta2.pontos_turisticos);
-    printf("Pontos Turísticos: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.pontos_turisticos < carta2.pontos_turisticos ? "Carta 2 venceu" : "Empate"));
-
-    // Densidade Populacional (menor vence)
-    resultado = (carta1.densidade < carta2.densidade);
-    printf("Densidade Populacional: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.densidade > carta2.densidade ? "Carta 2 venceu" : "Empate"));
-
-    // PIB per Capita
-    resultado = (carta1.pib_per_capita > carta2.pib_per_capita);
-    printf("PIB per Capita: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.pib_per_capita < carta2.pib_per_capita ? "Carta 2 venceu" : "Empate"));
+    printf("### Super Trunfo ###\n");
+    printf("\n*** Escolha qual atributo deseja comparar ***\n");
+    printf("\n1. População\n");
+    printf("2. Area\n");
+    printf("3. PIB\n");
+    printf("4. Pontos Turisticos\n");
+    printf("5. Densidade\n");
+    printf("6. Todos atributos\n");
+    printf("Digite a opção: ");
+    scanf("%d", &escolhaJogador);
 
 
-    if (carta1.super_poder > carta2.super_poder) {
-        printf("A carta 1 (%s - %s) é mais forte com super poder de %llu.\n", 
-               carta1.estado, carta1.nome_cidade, carta1.super_poder); // Para mostrar na tela o nome do estado, cidade e os pontos totais do super poder.
-    } else if (carta1.super_poder < carta2.super_poder) {
-        printf("A carta 2 (%s - %s) é mais forte com super poder de %llu.\n", 
-               carta2.estado, carta2.nome_cidade, carta2.super_poder);
-    } else {
-        printf("As duas cartas têm o mesmo super poder de %llu.\n\n", carta1.super_poder);
+    switch (escolhaJogador) {
+    
+        case 1:// POPULAÇÂO
+            if (carta1.populacao > carta2.populacao) {
+                printf("A carta (%s - %s) Venceu com População de : %lu\n", carta1.estado, carta1.nome_cidade, carta1.populacao);
+            } else if (carta2.populacao > carta1.populacao) {
+                printf("A carta (%s - %s) Venceu com População de : %lu\n", carta2.estado, carta2.nome_cidade, carta2.populacao);
+            } else {
+                printf("*** As cartas empataram em População: %lu ***", carta1.populacao);
+            }
+              
+            break;
+
+        case 2:// AREA KM²
+            if (carta1.area_km2 > carta2.area_km2) {
+                printf("A carta (%s - %s) Venceu com Area km²: %.2f", carta1.estado, carta1.nome_cidade, carta1.area_km2);
+            } else if (carta2.area_km2 > carta1.area_km2) {
+                printf("A carta (%s - %s) Venceu com Area Km²: %.2f", carta2.estado, carta2.nome_cidade, carta2.area_km2);
+            } else {
+                printf("*** As cartas empataram em Area Km²: %.2f ***", carta1.area_km2);
+            }
+            break;
+
+        case 3:// PIB
+            if (carta1.pib > carta2.pib) {
+                printf("A carta (%s - %s) Venceu com PIB:R$ %llu", carta1.estado, carta1.nome_cidade, carta1.pib);
+            } else if (carta2.pib > carta1.pib) {
+                printf("A carta (%s - %s) Venceu com PIB:R$ %llu", carta2.estado, carta2.nome_cidade, carta2.pib);
+            } else {
+                printf("*** As cartas empataram em PIB: R$ %llu ***", carta1.pib);
+            }    
+            break;
+
+        case 4:// PONTOS TURISTICOS
+            if (carta1.pontos_turisticos > carta2.pontos_turisticos) {
+                printf("A carta (%s - %s) Venceu com : %d", carta1.estado, carta1.nome_cidade, carta1.pontos_turisticos);
+            } else if (carta2.pontos_turisticos > carta1.pontos_turisticos) {
+                printf("A carta (%s - %s) Venceu com : %d", carta2.estado, carta2.nome_cidade, carta2.pontos_turisticos);
+            } else {
+                printf("*** As cartas empataram em Pontos Turisticos: %d ***", carta1.pontos_turisticos);
+            }
+            break;
+
+        case 5:// DENSIDADE
+            if (carta1.densidade < carta2.densidade) {
+                printf("A carta (%s - %s) Venceu com Densidade: %.2f", carta1.estado, carta1.nome_cidade, carta1.densidade);
+            } else if (carta2.densidade < carta1.densidade) {
+                printf("A carta (%s - %s) Venceu com Densidade: %.2f", carta2.estado, carta2.nome_cidade, carta2.densidade);
+            } else {
+                printf("*** As cartas empataram em Densidade: %.2f ***", carta1.densidade);
+            }
+            break;
+
+        case 6:// TODOS ATRIBUTOS
+            // População
+            resultado = (carta1.populacao > carta2.populacao);
+            printf("População: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.populacao < carta2.populacao ? "Carta 2 venceu" : "Empate"));
+
+            // Área km²
+            resultado = (carta1.area_km2 > carta2.area_km2);
+            printf("Área km²: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.area_km2 < carta2.area_km2 ? "Carta 2 venceu" : "Empate"));
+
+            // PIB
+            resultado = (carta1.pib > carta2.pib);
+            printf("PIB: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.pib < carta2.pib ? "Carta 2 venceu" : "Empate"));
+
+            // Pontos Turísticos
+            resultado = (carta1.pontos_turisticos > carta2.pontos_turisticos);
+            printf("Pontos Turísticos: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.pontos_turisticos < carta2.pontos_turisticos ? "Carta 2 venceu" : "Empate"));
+
+            // Densidade Populacional (menor vence)
+            resultado = (carta1.densidade < carta2.densidade);
+            printf("Densidade Populacional: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.densidade > carta2.densidade ? "Carta 2 venceu" : "Empate"));
+
+            // PIB per Capita
+            resultado = (carta1.pib_per_capita > carta2.pib_per_capita);
+            printf("PIB per Capita: %d - %s\n", resultado, resultado ? "Carta 1 venceu" : (carta1.pib_per_capita < carta2.pib_per_capita ? "Carta 2 venceu" : "Empate"));
+            
+
+            if (carta1.super_poder > carta2.super_poder) {
+                printf("A carta 1 (%s - %s) é mais forte com super poder de %llu.\n", 
+                    carta1.estado, carta1.nome_cidade, carta1.super_poder); // Para mostrar na tela o nome do estado, cidade e os pontos totais do super poder.
+            } else if (carta1.super_poder < carta2.super_poder) {
+                printf("A carta 2 (%s - %s) é mais forte com super poder de %llu.\n", 
+                    carta2.estado, carta2.nome_cidade, carta2.super_poder);
+            } else {
+                printf("As duas cartas têm o mesmo super poder de %llu.\n\n", carta1.super_poder);
+            }
+            break;
+
+    default:
+            printf("*** Opção inválida ***");
+            break;
     }
 }
 
